@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply text-ink-900 antialiased;
+}
+
+/* Reusable button styles, matching the mock's primary/secondary CTAs */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-medium transition-colors;
+}
+.btn-primary {
+  @apply btn bg-brand-600 text-white hover:bg-brand-700;
+}
+.btn-secondary {
+  @apply btn border border-gray-300 text-ink-900 hover:bg-gray-50;
+}
+
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-wide text-brand-600;
+}
