@@ -1,9 +1,12 @@
 <script setup>
+defineProps({ page: { type: String, default: 'home' } })
+
 const links = [
-  { label: 'Heim', href: '#', active: true },
+  { label: 'Heim', href: '#', page: 'home' },
   { label: 'Þjónusta', href: '#thjonusta' },
   { label: 'Verkefni', href: '#verkefni' },
   { label: 'Um okkur', href: '#um-okkur' },
+  { label: 'Teymið', href: '#/teymid', page: 'team' },
   { label: 'Hafðu samband', href: '#samband' },
 ]
 </script>
@@ -26,7 +29,8 @@ const links = [
           :key="link.label"
           :href="link.href"
           class="pb-1"
-          :class="link.active
+          :aria-current="link.page && link.page === page ? 'page' : undefined"
+          :class="link.page && link.page === page
             ? 'border-b-2 border-brand-600 text-brand-600'
             : 'text-ink-600 hover:text-ink-900'"
         >
@@ -34,7 +38,7 @@ const links = [
         </a>
       </nav>
 
-      <a href="#samband" class="btn-primary">Fáðu tilboð →</a>
+      <a href="#/verkbeidni" class="btn-primary">Fáðu tilboð →</a>
     </div>
   </header>
 </template>

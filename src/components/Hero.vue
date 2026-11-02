@@ -21,7 +21,7 @@ const badges = [
         </p>
 
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="#samband" class="btn-primary">Fáðu tilboð →</a>
+          <a href="#/verkbeidni" class="btn-primary">Fáðu tilboð →</a>
           <a href="#thjonusta" class="btn-secondary">Skoða þjónustu</a>
         </div>
 

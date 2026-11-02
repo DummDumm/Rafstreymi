@@ -15,7 +15,7 @@
 
       <div class="flex items-center gap-4">
         <a href="tel:5191616" class="btn-secondary bg-white">📞 519 1616</a>
-        <a href="#" class="btn-primary">Fáðu tilboð →</a>
+        <a href="#/verkbeidni" class="btn-primary">Fáðu tilboð →</a>
       </div>
     </div>
   </section>
