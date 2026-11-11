@@ -2,25 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-glow-500 ring-offset-2;
+  }
 }
 
-body {
-  @apply text-ink-900 antialiased;
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold transition duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-brand-700 text-white shadow-card hover:bg-brand-800;
+  }
+  .btn-glow {
+    @apply btn bg-glow-400 text-brand-950 hover:bg-glow-300;
+  }
+  .btn-outline {
+    @apply btn border border-brand-700/25 bg-white text-brand-800 hover:border-brand-700/60;
+  }
+  .btn-ghost-light {
+    @apply btn border border-white/30 text-white hover:bg-white/10;
+  }
+
+  .eyebrow {
+    @apply text-[13px] font-semibold uppercase tracking-[0.14em] text-brand-600;
+  }
+  .section-title {
+    @apply text-[2rem] font-bold leading-[1.08] tracking-tight text-ink sm:text-[2.6rem];
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-brand-900/15 bg-white px-4 py-3 text-[15px] text-ink placeholder:text-ink/40 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 focus-visible:ring-offset-0;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
 }
 
-/* Reusable button styles, matching the mock's primary/secondary CTAs */
-.btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-medium transition-colors;
+/* Page transition between routes */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.22s ease, transform 0.22s ease;
 }
-.btn-primary {
-  @apply btn bg-brand-600 text-white hover:bg-brand-700;
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
 }
-.btn-secondary {
-  @apply btn border border-gray-300 text-ink-900 hover:bg-gray-50;
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
 }
 
-.eyebrow {
-  @apply text-xs font-semibold uppercase tracking-wide text-brand-600;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
