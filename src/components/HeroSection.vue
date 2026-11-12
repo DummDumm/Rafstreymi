@@ -18,8 +18,8 @@ let timers = []
 
 // How long each step lasts, in milliseconds from the click.
 const TIMELINE = [
-  [1300, 'ask'], //  "Vantar þig aðstoð?"
-  [2300, 'call'], // "Hringdu í 519 1616"
+  [1300, 'ask'], //  "Rafmagnslaust?"
+  [2300, 'call'], // "Vantar þig aðstoð? Hringdu í 519 1616"
   [5600, 'fix'], //  "Við kippum þessu í lag."
   [7300, 'back'], // lights flicker back on
   [8100, 'idle'],
@@ -183,12 +183,14 @@ onUnmounted(() => {
             <transition name="line" mode="out-in">
               <div v-if="phase === 'ask' || phase === 'call'" key="ask">
                 <p class="font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight sm:text-7xl">
-                  Vantar þig aðstoð?
+                  Rafmagnslaust?
                 </p>
                 <p
-                  class="mt-6 text-2xl font-medium text-white/80 transition-opacity duration-700 sm:text-4xl"
+                  class="mt-6 text-2xl font-medium leading-snug text-white/80 transition-opacity duration-700 sm:text-4xl"
                   :class="phase === 'call' ? 'opacity-100' : 'opacity-0'"
                 >
+                  Vantar þig aðstoð?
+                  <br class="sm:hidden" />
                   Hringdu í
                   <a
                     :href="site.phoneHref"
