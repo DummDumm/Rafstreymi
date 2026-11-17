@@ -33,7 +33,9 @@ watch(() => route.fullPath, () => (open.value = false))
       </div>
     </div>
 
-    <div class="border-b border-brand-900/10 bg-white/90 backdrop-blur-md">
+    <!-- Solid white: a see-through blurred header has to be redrawn on every
+         frame of a page fade, which stutters on Android phones. -->
+    <div class="relative border-b border-brand-900/10 bg-white">
       <div class="wrap flex h-[72px] items-center justify-between gap-6">
         <router-link to="/" class="shrink-0 rounded-md" aria-label="Rafstreymi – forsíða">
           <img :src="logo" alt="Rafstreymi rafverktakar" class="h-9 w-auto sm:h-10" width="640" height="199" />
@@ -76,19 +78,61 @@ watch(() => route.fullPath, () => (open.value = false))
         </div>
       </div>
 
-      <nav v-if="open" id="mobile-menu" class="border-t border-brand-900/10 bg-white lg:hidden" aria-label="Valmynd">
-        <div class="wrap flex flex-col py-3">
-          <router-link
-            v-for="l in links"
-            :key="l.label"
-            :to="l.to"
-            class="rounded-xl px-3 py-3.5 text-[17px] font-medium"
-            :class="l.match(route) ? 'bg-brand-50 text-brand-800' : 'text-ink'"
-          >
-            {{ l.label }}
-          </router-link>
-        </div>
-      </nav>
+      <!-- The phone menu lies over the page instead of pushing it down, so
+           closing it never makes the page jump while the next one fades in. -->
+      <transition name="menu-dim">
+        <div
+          v-if="open"
+          class="fixed inset-x-0 bottom-0 top-[109px] bg-ink/30 lg:hidden"
+          aria-hidden="true"
+          @click="open = false"
+        ></div>
+      </transition>
+      <transition name="menu">
+        <nav
+          v-if="open"
+          id="mobile-menu"
+          class="absolute inset-x-0 top-full border-t border-brand-900/10 bg-white shadow-lift lg:hidden"
+          aria-label="Valmynd"
+        >
+          <div class="wrap flex flex-col py-3">
+            <router-link
+              v-for="l in links"
+              :key="l.label"
+              :to="l.to"
+              class="rounded-xl px-3 py-3.5 text-[17px] font-medium"
+              :class="l.match(route) ? 'bg-brand-50 text-brand-800' : 'text-ink'"
+              @click="open = false"
+            >
+              {{ l.label }}
+            </router-link>
+          </div>
+        </nav>
+      </transition>
     </div>
   </header>
 </template>
+
+<style scoped>
+.menu-enter-active {
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+.menu-leave-active {
+  transition: opacity 0.12s ease-in;
+}
+.menu-enter-from {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+.menu-leave-to {
+  opacity: 0;
+}
+.menu-dim-enter-active,
+.menu-dim-leave-active {
+  transition: opacity 0.18s ease;
+}
+.menu-dim-enter-from,
+.menu-dim-leave-to {
+  opacity: 0;
+}
+</style>

@@ -8,6 +8,8 @@
   }
   body {
     @apply bg-white font-sans text-ink antialiased;
+    /* no grey flash on links and buttons when tapped on Android */
+    -webkit-tap-highlight-color: transparent;
   }
   h1,
   h2,
