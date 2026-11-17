@@ -1,7 +1,24 @@
 <script setup>
+import { ref } from 'vue'
 import SiteHeader from './components/SiteHeader.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import MobileCallBar from './components/MobileCallBar.vue'
+import { pageLeaveStart, pageLeaveDone } from './router/pageTransition'
+
+const main = ref(null)
+
+// Hold the page height while one page swaps for the next, so the footer
+// doesn't jump up into view for a moment and make the switch look like a reload.
+function beforeLeave() {
+  if (main.value) main.value.style.minHeight = `${main.value.offsetHeight}px`
+  pageLeaveStart()
+}
+function afterLeave() {
+  pageLeaveDone()
+}
+function afterEnter() {
+  if (main.value) main.value.style.minHeight = ''
+}
 </script>
 
 <template>
@@ -12,10 +29,17 @@ import MobileCallBar from './components/MobileCallBar.vue'
     Beint í efni
   </a>
   <SiteHeader />
-  <main id="main">
-    <router-view v-slot="{ Component }">
-      <transition name="page" mode="out-in">
-        <component :is="Component" :key="$route.path" />
+  <main id="main" ref="main">
+    <router-view v-slot="{ Component, route }">
+      <transition
+        name="page"
+        mode="out-in"
+        @before-leave="beforeLeave"
+        @after-leave="afterLeave"
+        @after-enter="afterEnter"
+        @enter-cancelled="afterEnter"
+      >
+        <component :is="Component" :key="route.path" />
       </transition>
     </router-view>
   </main>
