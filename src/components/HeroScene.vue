@@ -1,6 +1,10 @@
 <script setup>
 // The street scene in the hero. `on` switches the lights in every window.
-defineProps({ on: { type: Boolean, default: true } })
+// `instant` turns off the fades so the lights can flicker.
+defineProps({
+  on: { type: Boolean, default: true },
+  instant: { type: Boolean, default: false },
+})
 
 const windows = [
   // red house
@@ -29,6 +33,7 @@ const stars = [
   <svg
     viewBox="0 0 640 540"
     class="block h-full w-full"
+    :class="{ instant }"
     preserveAspectRatio="xMidYMax slice"
     role="img"
     :aria-label="on ? 'Þrjú hús að kvöldi með ljós í öllum gluggum' : 'Þrjú hús að kvöldi, ljósin eru slökkt'"
@@ -128,5 +133,8 @@ const stars = [
 <style scoped>
 .fade {
   transition: opacity 0.6s ease, fill 0.6s ease;
+}
+.instant .fade {
+  transition: none;
 }
 </style>

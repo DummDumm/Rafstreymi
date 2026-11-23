@@ -1,10 +1,61 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { ArrowRight, Phone, Check, Lightbulb, LightbulbOff } from 'lucide-vue-next'
 import HeroScene from './HeroScene.vue'
 import { site } from '../data/site'
 
 const lightsOn = ref(true)
+// What the scene shows. Follows the switch, except while the lights flicker.
+const sceneOn = ref(true)
+const flickering = ref(false)
+
+// Five seconds after load the lights flicker and then go out on their own.
+// [state, ms] steps; the last step leaves them off.
+const flickerSteps = [
+  [false, 70], [true, 110], [false, 50], [true, 60], [false, 140],
+  [true, 220], [false, 60], [true, 90], [false, 0],
+]
+const timers = []
+
+function clearTimers() {
+  timers.forEach(clearTimeout)
+  timers.length = 0
+  flickering.value = false
+}
+
+function setLights(on) {
+  clearTimers()
+  lightsOn.value = on
+  sceneOn.value = on
+}
+
+function toggle() {
+  setLights(!lightsOn.value)
+}
+
+onMounted(() => {
+  timers.push(
+    setTimeout(() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setLights(false)
+        return
+      }
+      flickering.value = true
+      let t = 0
+      flickerSteps.forEach(([on, ms], i) => {
+        timers.push(
+          setTimeout(() => {
+            sceneOn.value = on
+            if (i === flickerSteps.length - 1) setLights(false)
+          }, t),
+        )
+        t += ms
+      })
+    }, 5000),
+  )
+})
+
+onBeforeUnmount(clearTimers)
 const promises = ['Vottaðir rafvirkjar', 'Sanngjarnt verð', 'Fljót og örugg þjónusta']
 </script>
 
@@ -51,7 +102,7 @@ const promises = ['Vottaðir rafvirkjar', 'Sanngjarnt verð', 'Fljót og örugg 
       <!-- The scene, with a working light switch -->
       <div class="relative">
         <div class="aspect-[5/4] overflow-hidden rounded-[2rem] shadow-lift sm:aspect-[6/5]">
-          <HeroScene :on="lightsOn" />
+          <HeroScene :on="sceneOn" :instant="flickering" />
         </div>
 
         <div
@@ -64,7 +115,7 @@ const promises = ['Vottaðir rafvirkjar', 'Sanngjarnt verð', 'Fljót og örugg 
             aria-label="Kveikja og slökkva ljósin á myndinni"
             class="relative h-9 w-16 shrink-0 rounded-full transition-colors duration-300"
             :class="lightsOn ? 'bg-glow-400' : 'bg-brand-900'"
-            @click="lightsOn = !lightsOn"
+            @click="toggle"
           >
             <span
               class="absolute left-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow transition-transform duration-300"
