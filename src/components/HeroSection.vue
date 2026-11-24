@@ -9,7 +9,7 @@ const lightsOn = ref(true)
 const sceneOn = ref(true)
 const flickering = ref(false)
 
-// Five seconds after load the lights flicker and then go out on their own.
+// Two and a half seconds after load the lights flicker and then go out on their own.
 // [state, ms] steps; the last step leaves them off.
 const flickerSteps = [
   [false, 70], [true, 110], [false, 50], [true, 60], [false, 140],
@@ -51,7 +51,7 @@ onMounted(() => {
         )
         t += ms
       })
-    }, 5000),
+    }, 2500),
   )
 })
 
