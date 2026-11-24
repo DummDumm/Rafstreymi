@@ -10,7 +10,7 @@ const lightsOn = ref(true)
 const middleOn = ref(true)
 const flickering = ref(false)
 
-// Two and a half seconds after load the middle house's lights flicker and
+// One second after load the middle house's lights flicker and
 // then it loses power. [state, ms] steps; the last step leaves it dark.
 const flickerSteps = [
   [false, 70], [true, 110], [false, 50], [true, 60], [false, 140],
@@ -48,7 +48,7 @@ onMounted(() => {
         )
         t += ms
       })
-    }, 2500),
+    }, 1000),
   )
 })
 
