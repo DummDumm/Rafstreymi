@@ -3,7 +3,6 @@ import { ShieldCheck, Clock, Users, Mail, Phone } from 'lucide-vue-next'
 import { team, tel } from '../data/team'
 import PageIntro from '../components/PageIntro.vue'
 import HeroScene from '../components/HeroScene.vue'
-import StatsBar from '../components/StatsBar.vue'
 import QuoteSection from '../components/QuoteSection.vue'
 
 const values = [
@@ -20,7 +19,6 @@ const values = [
       title="Fólkið á bak við Rafstreymi"
       text="Við höfum starfað í rafiðnaði í yfir 20 ár og byggt fyrirtækið á fagmennsku, trausti og góðri þjónustu við viðskiptavini okkar."
     />
-    <StatsBar />
 
     <section class="py-20 sm:py-28">
       <div class="wrap grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
