@@ -40,7 +40,7 @@ const stars = [
     :class="{ instant }"
     preserveAspectRatio="xMidYMax slice"
     role="img"
-    :aria-label="on ? 'Þrjú hús að kvöldi með ljós í öllum gluggum' : 'Þrjú hús að kvöldi, ljósin eru slökkt'"
+    :aria-label="!on ? 'Þrjú hús að kvöldi, ljósin eru slökkt' : middleOn ? 'Þrjú hús að kvöldi með ljós í öllum gluggum' : 'Þrjú hús að kvöldi, rafmagnslaust í miðhúsinu'"
   >
     <defs>
       <linearGradient id="hs-sky" x1="0" y1="0" x2="0" y2="1">

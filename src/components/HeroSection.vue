@@ -4,16 +4,14 @@ import { ArrowRight, Phone, Check, Lightbulb, LightbulbOff } from 'lucide-vue-ne
 import HeroScene from './HeroScene.vue'
 import { site } from '../data/site'
 
+// The switch controls the power to the middle house. `middleOn` is what the
+// picture shows; it follows the switch, except while the lights flicker.
 const lightsOn = ref(true)
-// What the scene shows. Follows the switch; while flickering only the
-// middle house's lights blink.
-const sceneOn = ref(true)
 const middleOn = ref(true)
 const flickering = ref(false)
 
-// Two and a half seconds after load the middle house's lights flicker, then
-// every light goes out.
-// [state, ms] steps; the last step leaves them off.
+// Two and a half seconds after load the middle house's lights flicker and
+// then it loses power. [state, ms] steps; the last step leaves it dark.
 const flickerSteps = [
   [false, 70], [true, 110], [false, 50], [true, 60], [false, 140],
   [true, 220], [false, 60], [true, 90], [false, 0],
@@ -24,13 +22,12 @@ function clearTimers() {
   timers.forEach(clearTimeout)
   timers.length = 0
   flickering.value = false
-  middleOn.value = true
 }
 
 function setLights(on) {
   clearTimers()
   lightsOn.value = on
-  sceneOn.value = on
+  middleOn.value = on
 }
 
 function toggle() {
@@ -102,7 +99,7 @@ const promises = ['Vottaðir rafvirkjar', 'Sanngjarnt verð', 'Fljót og örugg 
       <!-- The scene, with a working light switch -->
       <div class="relative">
         <div class="aspect-[5/4] overflow-hidden rounded-[2rem] shadow-lift sm:aspect-[6/5]">
-          <HeroScene :on="sceneOn" :middle-on="middleOn" :instant="flickering" />
+          <HeroScene :middle-on="middleOn" :instant="flickering" />
         </div>
 
         <div
@@ -112,7 +109,7 @@ const promises = ['Vottaðir rafvirkjar', 'Sanngjarnt verð', 'Fljót og örugg 
             type="button"
             role="switch"
             :aria-checked="lightsOn"
-            aria-label="Kveikja og slökkva ljósin á myndinni"
+            aria-label="Kveikja og slökkva ljósin í miðhúsinu á myndinni"
             class="relative h-9 w-16 shrink-0 rounded-full transition-colors duration-300"
             :class="lightsOn ? 'bg-glow-400' : 'bg-brand-900'"
             @click="toggle"
