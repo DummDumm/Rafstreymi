@@ -25,7 +25,7 @@ const timings = ['Sem fyrst', 'Innan mánaðar', 'Innan 3 mánaða', 'Sveigjanle
 
 const steps = [
   { title: 'Við förum yfir beiðnina', desc: 'Sérfræðingur skoðar verkið og metur umfang þess.' },
-  { title: 'Við höfum samband', desc: 'Við hringjum eða sendum póst innan eins virks dags.' },
+  { title: 'Við höfum samband', desc: 'Við hringjum eða sendum póst eins fljótt og auðið er.' },
   { title: 'Þú færð tilboð', desc: 'Skýrt og sundurliðað verðtilboð, án skuldbindingar.' },
 ]
 
@@ -211,8 +211,8 @@ const fieldClass = (key) => ['field', errors[key] ? '!border-red-500 focus:!ring
           </span>
           <h2 class="mt-6 text-3xl font-bold tracking-tight text-ink">Takk fyrir!</h2>
           <p class="mt-3 max-w-lg text-lg leading-relaxed text-ink/70">
-            Verkbeiðnin þín hefur verið send. Við förum yfir hana og höfum samband innan eins virks
-            dags.
+            Verkbeiðnin þín hefur verið send. Við förum yfir hana og höfum samband eins fljótt og
+            auðið er.
           </p>
           <p class="mt-3 text-[15px] text-ink/70">
             Liggur á? Hringdu í

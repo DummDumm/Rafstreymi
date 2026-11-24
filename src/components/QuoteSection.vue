@@ -5,7 +5,7 @@ import { site } from '../data/site'
 const perks = [
   { icon: FileText, text: 'Ókeypis og óskuldbindandi verðtilboð' },
   { icon: Camera, text: 'Þú getur sent myndir af verkinu með' },
-  { icon: BadgeCheck, text: 'Við höfum samband innan eins virks dags' },
+  { icon: BadgeCheck, text: 'Við höfum samband eins fljótt og auðið er' },
 ]
 </script>
 
