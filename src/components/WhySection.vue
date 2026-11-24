@@ -2,7 +2,7 @@
 import { ShieldCheck, Clock, BadgeCheck, Users } from 'lucide-vue-next'
 
 const reasons = [
-  { icon: ShieldCheck, title: 'Traust og fagmennska', text: 'Vottaðir rafvirkjar með áratuga reynslu.' },
+  { icon: ShieldCheck, title: 'Traust og fagmennska', text: 'Vottaðir rafvirkjar með reynslu.' },
   { icon: Clock, title: 'Áreiðanleg þjónusta', text: 'Fljót viðbrögð og verkefni unnin á réttum tíma.' },
   { icon: BadgeCheck, title: 'Gæði í fyrirrúmi', text: 'Notum aðeins hágæða efni og búnað.' },
   { icon: Users, title: 'Viðskiptavinir í forgrunni', text: 'Hlutlaus ráðgjöf og lausnir sem henta þínum þörfum.' },

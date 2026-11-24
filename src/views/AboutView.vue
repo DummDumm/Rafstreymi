@@ -7,7 +7,7 @@ import QuoteSection from '../components/QuoteSection.vue'
 
 const values = [
   { icon: Clock, title: 'Áreiðanleiki', text: 'Við mætum á réttum tíma og klárum verkið eins og lofað var.' },
-  { icon: ShieldCheck, title: 'Fagmennska', text: 'Vottaðir rafvirkjar með áratuga reynslu að baki.' },
+  { icon: ShieldCheck, title: 'Fagmennska', text: 'Vottaðir rafvirkjar með reynslu að baki.' },
   { icon: Users, title: 'Nánd við viðskiptavini', text: 'Persónuleg þjónusta og skýr samskipti frá upphafi til enda.' },
 ]
 </script>
@@ -17,7 +17,7 @@ const values = [
     <PageIntro
       eyebrow="Um okkur"
       title="Fólkið á bak við Rafstreymi"
-      text="Við höfum starfað í rafiðnaði í yfir 20 ár og byggt fyrirtækið á fagmennsku, trausti og góðri þjónustu við viðskiptavini okkar."
+      text="Fagmenn sem þú getur treyst, með reynslu. Við byggjum fyrirtækið á fagmennsku, trausti og góðri þjónustu við viðskiptavini okkar."
     />
 
     <section class="py-20 sm:py-28">
