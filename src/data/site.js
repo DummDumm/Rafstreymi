@@ -4,7 +4,7 @@ export const site = {
   legalName: 'Rafstreymi ehf.',
   phone: '696 1980',
   phoneHref: 'tel:+3546961980',
-  email: 'info@rafstreymi.is',
+  email: 'rafstreymi@rafstreymiehf.is',
   address: 'Bæjarhálsi 2, 110 Reykjavík',
   hours: 'Opið alla virka daga 08:00 – 16:00',
 }

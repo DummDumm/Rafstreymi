@@ -39,6 +39,6 @@ is skipped, so either use `git push` or create
   entries. Replace them and add photos to `src/assets/projects/`.
 - `src/data/team.js`: the owners' e-mail addresses and phone numbers are placeholders.
 - The footer links "Persónuvernd" and "Skilmálar" point nowhere yet.
-- The verkbeiðni form sends through FormSubmit to info@rafstreymi.is. The first
+- The verkbeiðni form sends through FormSubmit to rafstreymi@rafstreymiehf.is. The first
   request triggers a confirmation e-mail to that address, which must be
   confirmed once before requests start arriving.
