@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { Menu, X, Phone, Zap } from 'lucide-vue-next'
+import { Menu, X, Phone } from 'lucide-vue-next'
 import logo from '../assets/logo.png'
 import { site } from '../data/site'
 
@@ -22,14 +22,10 @@ watch(() => route.fullPath, () => (open.value = false))
 
 <template>
   <header class="sticky top-0 z-50">
-    <!-- Slim info bar: the number people look for when the power is out -->
+    <!-- Slim info bar with opening hours -->
     <div class="bg-brand-900 text-white">
-      <div class="wrap flex h-9 items-center justify-between text-[13px]">
-        <p class="flex items-center gap-2 font-medium">
-          <Zap class="h-3.5 w-3.5 text-glow-400" aria-hidden="true" />
-          Bilanaþjónusta allan sólarhringinn
-        </p>
-        <p class="hidden text-white/75 sm:block">{{ site.hours }}</p>
+      <div class="wrap flex h-9 items-center justify-end text-[13px]">
+        <p class="text-white/75">{{ site.hours }}</p>
       </div>
     </div>
 
