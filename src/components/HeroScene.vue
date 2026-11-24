@@ -1,10 +1,14 @@
 <script setup>
 // The street scene in the hero. `on` switches the lights in every window.
-// `instant` turns off the fades so the lights can flicker.
-defineProps({
+// `middleOn` lets the middle house's lights flicker on their own.
+// `instant` turns off the fades so the flicker is sharp.
+const props = defineProps({
   on: { type: Boolean, default: true },
+  middleOn: { type: Boolean, default: true },
   instant: { type: Boolean, default: false },
 })
+
+const lit = (w) => props.on && (!w.mid || props.middleOn)
 
 const windows = [
   // red house
@@ -12,12 +16,12 @@ const windows = [
   { x: 178, y: 330, w: 34, h: 44 },
   { x: 131, y: 258, w: 28, h: 28 },
   // tall light house
-  { x: 268, y: 275, w: 30, h: 40 },
-  { x: 315, y: 275, w: 30, h: 40 },
-  { x: 362, y: 275, w: 30, h: 40 },
-  { x: 268, y: 350, w: 30, h: 40 },
-  { x: 362, y: 350, w: 30, h: 40 },
-  { x: 316, y: 205, w: 28, h: 28 },
+  { x: 268, y: 275, w: 30, h: 40, mid: true },
+  { x: 315, y: 275, w: 30, h: 40, mid: true },
+  { x: 362, y: 275, w: 30, h: 40, mid: true },
+  { x: 268, y: 350, w: 30, h: 40, mid: true },
+  { x: 362, y: 350, w: 30, h: 40, mid: true },
+  { x: 316, y: 205, w: 28, h: 28, mid: true },
   // blue house
   { x: 452, y: 345, w: 34, h: 42 },
   { x: 534, y: 345, w: 34, h: 42 },
@@ -74,8 +78,11 @@ const stars = [
     <!-- window light falling on the snow -->
     <g class="fade" :opacity="on ? 1 : 0">
       <ellipse cx="145" cy="462" rx="110" ry="18" fill="#ffc233" opacity="0.2" filter="url(#hs-soft)" />
-      <ellipse cx="330" cy="462" rx="110" ry="18" fill="#ffc233" opacity="0.2" filter="url(#hs-soft)" />
       <ellipse cx="510" cy="462" rx="110" ry="18" fill="#ffc233" opacity="0.2" filter="url(#hs-soft)" />
+    </g>
+
+    <g class="fade" :opacity="on && middleOn ? 1 : 0">
+      <ellipse cx="330" cy="462" rx="110" ry="18" fill="#ffc233" opacity="0.2" filter="url(#hs-soft)" />
     </g>
 
     <!-- red house -->
@@ -107,9 +114,9 @@ const stars = [
       <rect
         class="fade"
         :x="w.x - 6" :y="w.y - 6" :width="w.w + 12" :height="w.h + 12"
-        fill="#ffc233" filter="url(#hs-soft)" :opacity="on ? 0.55 : 0"
+        fill="#ffc233" filter="url(#hs-soft)" :opacity="lit(w) ? 0.55 : 0"
       />
-      <rect class="fade" :x="w.x" :y="w.y" :width="w.w" :height="w.h" rx="2" :fill="on ? '#ffcf5c' : '#0d1d17'" />
+      <rect class="fade" :x="w.x" :y="w.y" :width="w.w" :height="w.h" rx="2" :fill="lit(w) ? '#ffcf5c' : '#0d1d17'" />
       <path
         :d="`M${w.x + w.w / 2} ${w.y} V${w.y + w.h} M${w.x} ${w.y + w.h * 0.45} H${w.x + w.w}`"
         stroke="#172822" stroke-width="2" opacity="0.55"
