@@ -26,7 +26,7 @@ is skipped, so either use `git push` or create
 
 | What                         | File                          |
 | ---------------------------- | ----------------------------- |
-| Phone, e-mail, address, hours, the four numbers | `src/data/site.js` |
+| Phone, e-mail, address, hours | `src/data/site.js` |
 | Services                     | `src/data/services.js`        |
 | Projects and their photos    | `src/data/projects.js`        |
 | Colours and fonts            | `tailwind.config.js`          |
@@ -37,7 +37,7 @@ is skipped, so either use `git push` or create
 
 - `src/data/projects.js`: only the first project is real. The rest are sample
   entries. Replace them and add photos to `src/assets/projects/`.
-- `src/data/team.js`: the owners' e-mail addresses and phone numbers are placeholders.
+- `src/data/team.js`: the owners' phone numbers are placeholders.
 - The footer links "Persónuvernd" and "Skilmálar" point nowhere yet.
 - The verkbeiðni form sends through FormSubmit to rafstreymi@rafstreymiehf.is. The first
   request triggers a confirmation e-mail to that address, which must be

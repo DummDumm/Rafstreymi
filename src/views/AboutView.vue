@@ -1,5 +1,5 @@
 <script setup>
-import { ShieldCheck, Clock, Users, Mail, Phone } from 'lucide-vue-next'
+import { ShieldCheck, Clock, Users, Phone } from 'lucide-vue-next'
 import { team, tel } from '../data/team'
 import PageIntro from '../components/PageIntro.vue'
 import HeroScene from '../components/HeroScene.vue'
@@ -79,10 +79,6 @@ const values = [
                 <p class="font-display text-xl font-bold tracking-tight text-ink">{{ m.name }}</p>
                 <p class="mt-1 text-[15px] font-medium text-brand-700">{{ m.title }}</p>
                 <ul class="mt-5 space-y-2.5 text-[15px] text-ink/75">
-                  <li class="flex items-center gap-3">
-                    <Mail class="h-4 w-4 text-brand-700" aria-hidden="true" />
-                    <a :href="`mailto:${m.email}`" class="hover:text-ink hover:underline">{{ m.email }}</a>
-                  </li>
                   <li class="flex items-center gap-3">
                     <Phone class="h-4 w-4 text-brand-700" aria-hidden="true" />
                     <a :href="tel(m.phone)" class="hover:text-ink hover:underline">{{ m.phone }}</a>
