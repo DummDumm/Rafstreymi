@@ -36,10 +36,6 @@ function toggle() {
 onMounted(() => {
   timers.push(
     setTimeout(() => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        setLights(false)
-        return
-      }
       flickering.value = true
       let t = 0
       flickerSteps.forEach(([on, ms], i) => {
