@@ -15,7 +15,7 @@ const windows = [
   { x: 78, y: 330, w: 34, h: 44 },
   { x: 178, y: 330, w: 34, h: 44 },
   { x: 131, y: 258, w: 28, h: 28 },
-  // tall pink house
+  // tall light house
   { x: 268, y: 275, w: 30, h: 40, mid: true },
   { x: 315, y: 275, w: 30, h: 40, mid: true },
   { x: 362, y: 275, w: 30, h: 40, mid: true },
@@ -92,9 +92,9 @@ const stars = [
     <rect x="127" y="372" width="36" height="70" rx="2" fill="#172822" />
     <circle cx="156" cy="410" r="2" fill="#ffc233" />
 
-    <!-- tall pink house -->
+    <!-- tall light house -->
     <polygon points="236,252 330,168 424,252" fill="#172822" />
-    <rect x="250" y="250" width="160" height="192" fill="#e6a4b4" />
+    <rect x="250" y="250" width="160" height="192" fill="#e9e4d6" />
     <rect x="250" y="250" width="160" height="192" fill="url(#hs-iron)" />
     <rect x="313" y="384" width="34" height="58" rx="2" fill="#27624a" />
     <circle cx="340" cy="416" r="2" fill="#ffc233" />
